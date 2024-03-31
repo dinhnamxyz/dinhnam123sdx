@@ -1,0 +1,136 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-image: url(/assets/image/hinh-nen-may-tinh-4k-cong-nghe-40.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height:100vh;
+}
+
+
+
+.dangki
+{
+    width: 450px;
+    height: 700px;
+    background-color: rgba(255,240,245,0.7);
+    margin-left: 15%;
+    margin-top: 5%;;
+    
+}
+.dangki:focus
+{
+    border-color: rgb(229,231,235);
+    transform: scale(1.01);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2),
+    -10px -10px 20px rgba(255, 255, 255, 0.2);
+}
+.dangki label,input,button
+{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    
+}
+
+.dangki span
+{
+    font-size: 10px;
+    font-weight: 100;
+}
+
+.dangki input{
+    margin-top: 3px;
+    border: none;
+    outline: none;
+    background-color:inherit;
+    border-bottom: 1px solid gray;
+    width: 100%;
+}*{
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-image: url(/assets/image/hinh-nen-may-tinh-4k-cong-nghe-40.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height:100vh;
+}
+
+
+
+.dangki
+{
+    width: 450px;
+    height: 500px;
+    background-color: rgba(255,240,245,0.7);
+    margin-left: 15%;
+    margin-top: 10%;
+    box-shadow: 10px 10px 20px   #0099CC,
+    -10px -10px 20px #0099CC;
+    
+}
+
+.dangki label,input,button
+{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    
+}
+
+.dangki span
+{
+    font-size: 10px;
+    font-weight: 100;
+}
+
+.dangki input{
+    margin-top: 3px;
+    border: none;
+    outline: none;
+    background-color:inherit;
+    border-bottom: 1px solid gray;
+    width: 100%;
+}
+.dangki input:focus{
+    background-color:inherit;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+
+.dangki h1
+{
+
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    
+    
+}
+
+
+.dangki input:focus{
+    background-color:inherit;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+
+.dangki h1
+{
+
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    
+    
+}
+
