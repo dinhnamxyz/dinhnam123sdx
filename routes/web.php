@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Models\AccoutModel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,13 +79,40 @@ Route::prefix('/posts')->name('baiviet.') ->group(function()
         
 
         
-
-        
 });
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/supertool',
+[ListingController::class,'index'])->name('supertool');
+
+// show create form
+Route::get('/listings/create',
+[ListingController::class,'create']);
+
+// Store data
+Route::post('/listings',
+[ListingController::class,'store']);
+
+// Show Edit Form
+Route::get('/listings/{listing}/edit',
+[ListingController::class, 'edit']);
+
+//Update Listing`
+Route::put('/listings/{listing}',
+[ListingController::class,'update']);
+
+//Delete Listing
+Route::delete('/listings/{listing}',
+[ListingController::class,'destroy']);
+
+
+// Singgle listing
+Route::get('/listings/{listing}',
+[ListingController::class,'show']);
+
