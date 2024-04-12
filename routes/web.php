@@ -75,7 +75,7 @@ Route::prefix('/posts')->name('baiviet.') ->group(function()
 
 
         
-        Route::get('/test-queue',[PostController::class, 'testQueue'])->name('testQueue');
+        // Route::get('/test-queue',[PostController::class, 'testQueue'])->name('testQueue');
         
 
         
@@ -87,32 +87,3 @@ Route::prefix('/posts')->name('baiviet.') ->group(function()
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/supertool',
-[ListingController::class,'index'])->name('supertool');
-
-// show create form
-Route::get('/listings/create',
-[ListingController::class,'create']);
-
-// Store data
-Route::post('/listings',
-[ListingController::class,'store']);
-
-// Show Edit Form
-Route::get('/listings/{listing}/edit',
-[ListingController::class, 'edit']);
-
-//Update Listing`
-Route::put('/listings/{listing}',
-[ListingController::class,'update']);
-
-//Delete Listing
-Route::delete('/listings/{listing}',
-[ListingController::class,'destroy']);
-
-
-// Singgle listing
-Route::get('/listings/{listing}',
-[ListingController::class,'show']);
-

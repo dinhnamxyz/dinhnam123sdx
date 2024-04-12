@@ -186,14 +186,14 @@
                                     <tbody>
                                         @foreach ($data as $item)
                                         <tr>
-                                            <td>{{$item->id_posts}}</td>
+                                            <td>{{$item->id}}</td>
                                             <td>{{$item->id_content}}</td>
                                             <td>{{$item->title}}</td>
                                             <td>{{$item->plus}}</td>
                                             <td><img src="{{$item->image_path}}" alt="" style ="width: 80px; height: 60px;"></td>
                                             <td>{!!$item->content!!}</td>
-                                            <td>{{$item->create_time}}</td>
-                                            <td>{{$item->update_time}}</td>
+                                            <td>{{$item->created_at}}</td>
+                                            <td>{{$item->updated_at}}</td>
                                             {{-- <td>
                                                 <ul class = "list-unstyled my-5">
                                                     <li><a href="{{route('baiviet.getTao_noi_dung',['id_bai_viet'=>$item->id_bai_viet])}}" class='btn btn-success'>➕</a></li>

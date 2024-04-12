@@ -140,7 +140,7 @@
                             <li class = >
                                 <ul class = "list-unstyled ">
                                     <li><a href="#" class = "text-dark"> {{$baiviet[0]->author_name}}</a></li>
-                                    <li> {{ \Carbon\Carbon::parse($baiviet[0]->create_time)->diffForHumans() }}</li>
+                                    <li> {{ \Carbon\Carbon::parse($baiviet[0]->created_at)->diffForHumans() }}</li>
                                 </ul>
                             </li>
                         </ul>
@@ -184,13 +184,13 @@
                                                     @foreach ($noidung as $item)
                                                     <tr>
                                                         
-                                                        <td>{{$item->id_content}}</td>
+                                                        <td>{{$item->id}}</td>
                                                         <td>{{$item->title}}</td>
                                                         
                                                         <td><img src="{{$item->image_path}}" alt="" style="width: 100px; height: 100px;"></td>
                                                         <td>{!!$item->content!!}</td>
-                                                        <td>{{$item->create_time}}</td>
-                                                        <td>{{$item->update_time}}</td>
+                                                        <td>{{$item->created_at}}</td>
+                                                        <td>{{$item->updated_at}}</td>
                                                         {{-- <td><a href="{{route('baiviet.getTao_noi_dung',['id_bai_viet'=>$item->id_posts])}}" class='btn btn-success'>Thêm</a></td> --}}
                                                         <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal_add">
                                                             Add
@@ -199,7 +199,7 @@
                                                         {{-- <td><a href="{{route('baiviet.gUpdate',['id'=>$item->id_posts , 'id_content' => $item->id_content ])}}" class='btn btn-success'>Sửa</a></td> --}}
                                                         <td><button type="button" class = "btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal_update">Update</button></td>
                                                         
-                                                        <td><a href="{{route('baiviet.xoaNoiDung',['id'=>$item->id_posts , 'id_content'=>$item->id_content ])}}" class='btn btn-success'>Xóa</a></td>
+                                                        <td><a href="{{route('baiviet.xoaNoiDung',['id'=>$item->id_posts , 'id_content'=>$item->id ])}}" class='btn btn-success'>Xóa</a></td>
                                                     </tr>
                                                         
                                                     @endforeach
@@ -241,7 +241,7 @@
           
                 <!-- Modal body -->
                 <div class="modal-body">
-                  <form action="{{ route('baiviet.postTao_noi_dung', ['id' =>$item->id_posts , 'id_content'=>$item->id_content]) }}" method="post">
+                  <form action="{{ route('baiviet.postTao_noi_dung', ['id' =>$item->id_posts , 'id_content'=>$item->id]) }}" method="post">
                     <div  class = "border border-dark rounded-3 border-3 my-5 ">
                         
                         <div class = "mx-3">
@@ -326,7 +326,7 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     
-                  <form action="{{route('baiviet.Update', ['id'=>$item->id_posts, 'id_content'=>$item->id_content])}}" method="POST">
+                  <form action="{{route('baiviet.Update', ['id'=>$item->id_posts, 'id_content'=>$item->id])}}" method="POST">
                     @method('PUT')
                         <div  class = "border border-dark rounded-3 border-3 my-5 ">
                         <div class = "mx-3">

@@ -8,14 +8,16 @@ use App\Jobs\SendMail_Job;
 use App\Jobs\sendMailJob;
 use App\Mail\sendMail;
 use Illuminate\Http\Request;
-use App\Models\PostModel;
+use App\Models\Post;
+use App\Models\Content;
+use App\Models\Author;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {   
     private $post;
-    public function __construct(PostModel $post)
+    public function __construct(Post $post)
     {
         $this->post  = $post;   
         
@@ -54,16 +56,18 @@ class PostController extends Controller
                             ['required' =>'Không được để trống'
                             ]);
 
-        $data_posts = [$request->tieu_de,
-                    $request->mo_ta_chung,
-                    $request ->tac_gia,
-                    now(),
-                    $request->mo_ta_chi_tiet];
+        $data_posts = [
+                    'title'=>$request->tieu_de,
+                    'plus'=>$request->mo_ta_chung,
+                    'author_id'=>$request ->tac_gia,
+                    'created_at'=>now(),
+                    'post_describe'=>$request->mo_ta_chi_tiet];
         $this->post->addBaiViet($data_posts);
 
 
         $id = $this->post->getIdBaiViet();
-        $id_bai_viet = intval($id[0]->id_posts);
+
+        $id_bai_viet = intval($id->id);
         
 
 
@@ -72,12 +76,13 @@ class PostController extends Controller
         { 
             if($request->input("linhvuc_$i") !== null)
             {
-                $data = [ $id_bai_viet,
-                $request->input("linhvuc_$i"),
-                $request->input("tieudenoidung_$i"),
-                $request->input("urlhinhanh_$i"),
-                $request->input("nguonhinhanh_$i"),
-                $request->input("noi_dung_$i"),
+                $data = [ 
+                'id_posts'=>$id_bai_viet,
+                'license'=>$request->input("linhvuc_$i"),
+                'title'=>$request->input("tieudenoidung_$i"),
+                'image_path'=>$request->input("urlhinhanh_$i"),
+                'image_source'=>$request->input("nguonhinhanh_$i"),
+                'content'=>$request->input("noi_dung_$i"),
 
                 ];
                 $this->post->addNoiDung($data);
@@ -88,17 +93,9 @@ class PostController extends Controller
             
         }
 
-    //     $name = "Dinh Dang Nam"; 
-    //     Mail::send('emails.test',compact('name'),function($email) use($name)
-    // {
-    //     $email->subject('TheRunDownAi');
-    //     $email->to('dangnam1st@gmail.com', $name);
-    // });
-    
-
-    $emailJob = new sendMailJob();
-    dispatch($emailJob);
-    return redirect()->back();
+        $emailJob = new sendMailJob();
+        dispatch($emailJob);
+        return redirect()->back();
         
         // return redirect()->route('baiviet.getTao_noi_dung',['id_bai_viet'=>$id_bai_viet]  
     }
@@ -107,7 +104,6 @@ class PostController extends Controller
     public function themND()
     {   
         $id_bai= $this->post->getIdBaiViet();
-        
         return $id_bai;
     }
 
@@ -123,12 +119,13 @@ class PostController extends Controller
 
         
         
-        $data = [$request->id,
-                $request->linhvuc,
-                $request->tieudenoidung,
-                $request->urlhinhanh,
-                $request->nguonhinhanh,
-                $request->noi_dung];
+        $data = [
+                'id_posts'=>$request->id,
+                'license'=>$request->linhvuc,
+                'title'=>$request->tieudenoidung,
+                'image_path'=>$request->urlhinhanh,
+                'image_source'=>$request->nguonhinhanh,
+                'content'=>$request->noi_dung];
        
 
         
@@ -210,15 +207,16 @@ class PostController extends Controller
                            ]);
 
         $data = [
-                $request->linhvuc,
-                $request->tieudenoidung,
-                $request->urlhinhanh,
-                $request->nguonhinhanh,
-                $request->noi_dung,
-                now(),
-                $request->id_content];
+                'license'=>$request->linhvuc,
+                'title'=>$request->tieudenoidung,
+                'image_path'=>$request->urlhinhanh,
+                'image_source'=>$request->nguonhinhanh,
+                'content'=>$request->noi_dung,
+                'updated_at'=>now(),
+                ];
+        $id = ['id'=>$request->id_content];
         
-        $this->post->UpdateContent($data);
+        $this->post->UpdateContent($data,$id);
         return redirect()->back();
 
     }

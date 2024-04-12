@@ -25,7 +25,7 @@
                 </li>
     
                 <li class="nav-item text-white  ">
-                    <a class = "nav-link" href = "{{route('supertool')}}">AI Tools</a>
+                    <a class = "nav-link" href = "#">AI Tools</a>
                 </li>
             </ul>
     

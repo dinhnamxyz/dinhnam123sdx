@@ -138,7 +138,6 @@
                                     <thead>
                                         <tr>
                                             <th>ID Bài Viết</th>
-                                            
                                             <th>Tiêu đề</th>
                                             <th>Mô tả chung</th>
                                             <th>Hình ảnh</th>
@@ -157,26 +156,39 @@
                                             $tam = null;
                                         @endphp
                                         @foreach ($data as $item)
-                                        @if ($item->id_posts != $tam)
+                                        @if ($item->id != $tam)
                                         <tr>
-                                            <td>{{$item->id_posts}}</td>
+                                            <td>{{$item->id}}</td>
                                             
                                             <td>{{$item->title}}</td>
                                             <td>{{$item->plus}}</td>
-                                            <td><img src="{{$item->image_path}}" alt="" style ="width: 80px; height: 60px;"></td>
-                                            <td>{!!$item->content!!}</td>
-                                            <td>{{$item->create_time}}</td>
-                                            <td>{{$item->update_time}}</td>
+                                            <td>
+                                            @foreach($item->contents as $item1)
+                                            <img src='{{$item1->image_path}}' alt="" style ="width: 80px; height: 60px;">
+                                            @endforeach
+                                            </td>
+                                            <td>
+                                                @foreach($item->contents as $item1)
+                                                {!!$item1->content!!}
+                                                @endforeach
+                                            </td>
+                                            <td>{{$item->created_at}}</td>
+                                            <td>{{$item->updated_at}}</td>
                                             <td>
                                                 <ul class = "list-unstyled my-5">
                                                     
-                                                    <li class = "my-3"><a href="{{route('baiviet.ChiTietBaiViet',['id'=>$item->id_posts])}}" class='btn btn-success'>View</a></li>
+                                                    <li class = "my-3"><a href="{{route('baiviet.ChiTietBaiViet',['id'=>$item->id])}}" class='btn btn-success'>View</a></li>
 
 
-                                                    <li class = "my-3"><a href="{{route('baiviet.xoaBaiViet',['id'=>$item->id_posts])}}" class='btn btn-success'>➖</a></li>
+                                                    <li class = "my-3"><a href="{{route('baiviet.xoaBaiViet',['id'=>$item->id])}}" class='btn btn-success'>➖</a></li>
 
 
-                                                    <li><a href="{{route('baiviet.gUpdate',['id'=>$item->id_posts ,'id_content' => $item->id_content])}}" class='btn btn-success'>Detail</a></li>
+                                                    <li>
+                                                        @foreach($item->contents as $item1)
+                                                        <a href="{{route('baiviet.gUpdate',['id'=>$item->id ,'id_content' =>$item1->id])}}" class='btn btn-success'>Detail</a>
+                                                        @endforeach
+                                                    </li>
+                                                    
                                                 </ul>
                                                 
                                             </td>
@@ -186,7 +198,7 @@
                                            
                                         @endif
                                         @php
-                                             $tam = $item->id_posts
+                                             $tam = $item->id;
                                         @endphp
                                             
                                         @endforeach

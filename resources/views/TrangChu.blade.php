@@ -32,20 +32,22 @@
                 @endphp
             @foreach ($data as $item)
                 
-                    @if ($item->id_posts !==$tam)
+                    @if ($item->id !==$tam)
                         
                         <div class ="col-sm-6 col-md-4 col-xl-4 mb-4  ">
-                            <a href="{{route('baiviet.ChiTietBaiViet',['id'=>$item->id_posts])}}" class ='text-decoration-none'>
+                            <a href="{{route('baiviet.ChiTietBaiViet',['id'=>$item->id])}}" class ='text-decoration-none'>
                                 <div class = "card h-100">
-                                    <img  src='{{$item->image_path}}' class = "rounded" alt="Ảnh đại diện" class ="w-100">
+                                    @foreach($item->contents as $item1)
+                                    <img  src='{{$item1->image_path}}' class = "rounded" alt="Ảnh đại diện" class ="w-100">
+                                    @endforeach
                                     <div class ="card-body">
                                         <h3>{{$item->title}}</h3>
                                         <p style ='font-size:16px;'>{{$item->plus}}</p>
                                     </div>
                                     <div class = "card-footer">
                                         <ul class = "list-unstyled">
-                                            <li class = "fw-bold">{{$item->author_name}}</li>
-                                            <li>{{ \Carbon\Carbon::parse($item->create_time)->diffForHumans()}}</li>
+                                            <li class = "fw-bold">{{$item->author->author_name}}</li>
+                                            <li>{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -53,7 +55,7 @@
                         </div>                        
                     @endif
                     @php
-                        $tam = $item->id_posts;
+                        $tam = $item->id;
                     @endphp
               
             @endforeach

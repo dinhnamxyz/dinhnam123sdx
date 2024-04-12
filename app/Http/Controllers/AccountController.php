@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\AccoutModel;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class AccountController extends Controller
 {
@@ -33,7 +31,7 @@ class AccountController extends Controller
     private $users;
     public function __construct()
     {
-        $this->users = new AccoutModel();
+        $this->users = new User();
         $this->middleware('guest')->except('logout');
         
     }
@@ -65,14 +63,14 @@ class AccountController extends Controller
         
 
         $data  = [
-            $request->user_name,
-            bcrypt($request->pass),
-            $request->email,
-            now()
+            'account_name'=>$request->user_name,
+            'password'=>bcrypt($request->pass),
+            'email'=>$request->email
+            
         ];
 
         
-        $this->users->addUser($data);
+        User::create($data);
         
         return redirect()->route('taikhoan.dangnhap');
 
@@ -122,7 +120,7 @@ class AccountController extends Controller
                 return redirect()->route('TrangChu');
         }else
         {
-                return"sbdbs";
+                return"thatbai";
         }
     }
 

@@ -31,7 +31,7 @@
                             <li class = >
                                 <ul class = "list-unstyled ">
                                     <li><a href="#" class = "text-dark"> {{$baiviet[0]->author_name}}</a></li>
-                                    <li> {{ \Carbon\Carbon::parse($baiviet[0]->create_time)->diffForHumans() }}</li>
+                                    <li> {{ \Carbon\Carbon::parse($baiviet[0]->created_at)->diffForHumans() }}</li>
                                 </ul>
                             </li>
                         </ul>
@@ -192,16 +192,18 @@
                             $tam = null;
                         @endphp
                         @foreach ($dexuat as $item)
-                            @if ($item->id_posts !== $tam)
-                            <a href="{{route('baiviet.ChiTietBaiViet',['id'=>$item->id_posts])}}" class ='text-decoration-none text-dark'>
+                            @if ($item->id !== $tam)
+                            <a href="{{route('baiviet.ChiTietBaiViet',['id'=>$item->id])}}" class ='text-decoration-none text-dark'>
                                 <div class = "row d-flex justify-content-between">
                                     <div class = "col-6">
-                                        <img class= "img-fluid rounded-3" src="{{$item->image_path}}" alt="">
+                                        @foreach($item->contents as $item1)
+                                        <img class= "img-fluid rounded-3" src="{{$item1->image_path}}" alt="">
+                                        @endforeach
                                     </div>
                                     <div class ="col-6">
                                         <h5>{{$item->title}}</h5>
                                         <p style = "font-size: 14px;">{{$item->plus}}</p>
-                                        <span>{{$item->create_time}}</span>
+                                        <span>{{$item->created_at}}</span>
                                     </div>
                                 </div>
                             </a>
@@ -210,7 +212,7 @@
                                 
                             @endif
                             @php
-                                $tam = $item->id_posts;
+                                $tam = $item->id;
                             @endphp
                             
                         @endforeach

@@ -45,12 +45,12 @@
                     @endphp
                     @foreach ($data as $item)
                 
-                    @if ($item->id_posts !==$tam)
+                    @if ($item->id !==$tam)
                         @php
                         $hien_thi=true;
                         @endphp
                         <div class ="col-sm-6 col-md-4 col-xl-4 mb-4  ">
-                            <a href="{{route('baiviet.ChiTietBaiViet',['id'=>$item->id_posts])}}" class ='text-decoration-none'>
+                            <a href="{{route('baiviet.ChiTietBaiViet',['id'=>$item->id])}}" class ='text-decoration-none'>
                                 <div class = "card h-100">
                                     <img  src='{{$item->image_path}}' class = "rounded" alt="Ảnh đại diện" class ="w-100">
                                     <div class ="card-body">
